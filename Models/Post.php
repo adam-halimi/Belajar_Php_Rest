@@ -17,4 +17,16 @@
         }
 
         // fungsi fungsi
+        // fungsi read all
+        public function read() {
+            // query database
+            $query = 'SELECT * FROM '.$this->tabel.' ORDER BY id_mhs ASC';
+
+            // statement
+            $stmt = $this->conn->prepare($query);
+
+            // execute statement
+            $stmt->execute();
+            return $stmt;
+        }
     }
