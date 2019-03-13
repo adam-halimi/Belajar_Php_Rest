@@ -23,4 +23,29 @@
     if($num > 0){
         //post data jadi array
         $post_array = array();
+        $post_array['data'] = array();
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+
+            $post_item = array(
+                'id_mhs' => $id_mhs,
+                'nama_mhs' => $nama_mhs,
+                'jk_mhs' => $jk_mhs,
+                'hp_mhs' => $hp_mhs,
+                'alamat_mhs' => $alamat_mhs
+            );
+
+            //memasukkan data item ke attribut data
+            array_push($post_array['data'], $post_item);
+        }
+
+        //mengubah data ke json
+        echo json_encode($post_array);
+
+    } else {
+        //jika row tidak ditemukan atau data kosong
+        echo json_encode(
+            array('message' => 'Data Not Found!')
+        );
     }
