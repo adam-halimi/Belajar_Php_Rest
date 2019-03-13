@@ -29,4 +29,27 @@
             $stmt->execute();
             return $stmt;
         }
+
+        // fungsi get single data
+        public function read_single(){
+            // query database
+            $query = 'SELECT * FROM '.$this->tabel.'WHERE id_mhs = ?';
+
+            // statement
+            $stmt = $this->conn->prepare($query);
+
+            // bind id_mhs
+            $stmt->bindParam(1, $this->id_mhs);
+
+            //execute
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            //set data
+            $this->nama_mhs = $row['nama_mhs'];
+            $this->jk_mhs = $row['jk_mhs'];
+            $this->hp_mhs = $row['hp_mhs'];
+            $this->alamat_mhs = $row['alamat_mhs'];
+        }
     }
