@@ -14,7 +14,7 @@
     $post = new Post($db);
 
     //get id_mhs
-    $post->id = isset($_GET['id_mhs']) ? $_GET['id'] : die();
+    $post->id_mhs = isset($_GET['id_mhs']) ? $_GET['id_mhs'] : die();
 
     //get post
     $post->read_single();

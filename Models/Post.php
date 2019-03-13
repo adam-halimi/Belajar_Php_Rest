@@ -33,7 +33,15 @@
         // fungsi get single data
         public function read_single(){
             // query database
-            $query = 'SELECT * FROM '.$this->tabel.'WHERE id_mhs = ?';
+            $query = 'SELECT 
+            id_mhs, 
+            nama_mhs, 
+            jk_mhs, 
+            hp_mhs, 
+            alamat_mhs 
+            FROM '. $this->tabel . '
+            WHERE id_mhs = ? 
+            LIMIT 0,1';
 
             // statement
             $stmt = $this->conn->prepare($query);
