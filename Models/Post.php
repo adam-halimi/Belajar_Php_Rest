@@ -60,4 +60,6 @@
             $this->hp_mhs = $row['hp_mhs'];
             $this->alamat_mhs = $row['alamat_mhs'];
         }
+
+        // Create Post
     }
