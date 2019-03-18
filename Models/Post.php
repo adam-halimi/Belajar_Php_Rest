@@ -1,8 +1,8 @@
 <?php
     class Post {
-        // nama tabel database
+        // nama table database
         private $conn;
-        private $tabel = 'tb_mahasiswa';
+        private $table = 'tb_mahasiswa';
 
         // poss att
         public $id_mhs;
@@ -20,7 +20,7 @@
         // fungsi read all
         public function read() {
             // query database
-            $query = 'SELECT * FROM '.$this->tabel.' ORDER BY id_mhs ASC';
+            $query = 'SELECT * FROM '.$this->table.' ORDER BY id_mhs ASC';
 
             // statement
             $stmt = $this->conn->prepare($query);
@@ -39,7 +39,7 @@
             jk_mhs, 
             hp_mhs, 
             alamat_mhs 
-            FROM '. $this->tabel . '
+            FROM '. $this->table . '
             WHERE id_mhs = ? 
             LIMIT 0,1';
 
@@ -65,7 +65,7 @@
         public function create(){
             //create query
             $query = 'INSERT INTO '. 
-                $this->tabel . '
+                $this->table . '
             SET
                 nama_mhs = :nama_mhs,
                 jk_mhs = :jk_mhs,
