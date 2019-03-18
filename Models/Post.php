@@ -64,8 +64,8 @@
         // Create Post function
         public function create(){
             //create query
-            $query = ' INSERT INTO '. 
-                $this->table . '
+            $query = 'INSERT INTO '. 
+                $this->tabel . '
             SET
                 nama_mhs = :nama_mhs,
                 jk_mhs = :jk_mhs,
