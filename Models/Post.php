@@ -98,4 +98,45 @@
             return false;
         }
 
+        // Update Post function
+        public function update(){
+            //create query
+            $query = 'UPDATE '. 
+                $this->table . '
+            SET
+                nama_mhs = :nama_mhs,
+                jk_mhs = :jk_mhs,
+                hp_mhs = :hp_mhs,
+                alamat_mhs = :alamat_mhs
+            WHERE
+                id_mhs = :id_mhs';
+
+            //buat statement
+            $stmt = $this->conn->prepare($query);
+
+            //clean data
+            $this->nama_mhs = htmlspecialchars(strip_tags($this->nama_mhs));
+            $this->jk_mhs = htmlspecialchars(strip_tags($this->jk_mhs));
+            $this->hp_mhs = htmlspecialchars(strip_tags($this->hp_mhs));
+            $this->alamat_mhs = htmlspecialchars(strip_tags($this->alamat_mhs));
+            $this->id_mhs = htmlspecialchars(strip_tags($this->id_mhs));
+
+            //binding data
+            $stmt->bindParam(':nama_mhs', $this->nama_mhs);
+            $stmt->bindParam(':jk_mhs', $this->jk_mhs);
+            $stmt->bindParam(':hp_mhs', $this->hp_mhs);
+            $stmt->bindParam(':alamat_mhs', $this->alamat_mhs);
+            $stmt->bindParam(':id_mhs', $this->id_mhs);
+
+            //execute query database
+            if ($stmt->execute()) {
+                return true;
+            }
+
+            //print error jika ada yang error
+            printf("Error: %s.\n", $stmt->error);
+
+            return false;
+        }
+
     }
