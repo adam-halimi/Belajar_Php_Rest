@@ -2,7 +2,7 @@
     //header
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: PUT');
+    header('Access-Control-Allow-Methods: DELETE');
     header('Access-Control-Allow-Headers: Access-Control-Allow-Methods,Access-Control-Allow-Headers,Content-Type,Authorization,X-Requested-With');
 
     include_once '../../config/Database.php';
@@ -21,18 +21,13 @@
     //set id
     $post->id_mhs = $data->id_mhs;
 
-    $post->nama_mhs = $data->nama_mhs;
-    $post->jk_mhs = $data->jk_mhs;
-    $post->hp_mhs = $data->hp_mhs;
-    $post->alamat_mhs = $data->alamat_mhs;
-
-    //create post menggunakan if
-    if ($post->update()) {
+    //delete post menggunakan if
+    if ($post->delete()) {
         echo json_encode(
-            array('message' => 'Post Updated')
+            array('message' => 'Post Deleted')
         );
     } else {
         echo json_encode(
-            array('message' => 'Post Not Updated')
+            array('message' => 'Post Not Deleted')
         );
     }

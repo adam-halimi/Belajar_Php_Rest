@@ -139,4 +139,30 @@
             return false;
         }
 
+        //Delete post
+        public function delete(){
+            //query delete
+            $query = 'DELETE FROM ' . $this->table . ' WHERE id_mhs = :id_mhs';
+
+            //statement 
+            $stmt = $this->conn->prepare($query);
+
+            //clean data just id
+            $this->id_mhs = htmlspecialchars(strip_tags($this->id_mhs));
+
+            //binding hanya id
+            $stmt->bindParam(':id_mhs', $this->id_mhs);
+
+            //execute query database
+            if ($stmt->execute()) {
+                return true;
+            }
+
+            //print error jika ada yang error
+            printf("Error: %s.\n", $stmt->error);
+
+            return false;
+
+        }
+
     }
